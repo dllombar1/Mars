@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Phrase Replacer</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="top">
+    <h1>Phrase Replacer</h1>
+    <label class="switch" title="Turn all replacements on or off">
+      <input type="checkbox" id="enabled" checked>
+      <span class="track" aria-hidden="true"></span>
+      <span class="switch-text">Active</span>
+    </label>
+  </header>
+
+  <main>
+    <p class="empty" id="empty" hidden>
+      No rules yet. Click <strong>Add rule</strong> to create your first find-and-replace phrase.
+    </p>
+
+    <div id="rules" class="rules" aria-live="polite"></div>
+
+    <button type="button" id="add" class="btn primary wide">+ Add rule</button>
+
+    <section class="io">
+      <div class="io-buttons">
+        <button type="button" id="export" class="btn">Export</button>
+        <button type="button" id="import" class="btn">Import</button>
+      </div>
+      <label class="io-label" for="io">Rules as JSON (Export fills this box, Import reads from it)</label>
+      <textarea id="io" rows="5" spellcheck="false" placeholder="[ ]"></textarea>
+    </section>
+  </main>
+
+  <footer class="status-bar">
+    <span id="status" role="status"></span>
+  </footer>
+
+  <template id="rule-template">
+    <div class="rule">
+      <div class="fields">
+        <label class="field">
+          <span>Find</span>
+          <input type="text" class="find" placeholder="e.g. old phrase" autocomplete="off" spellcheck="false">
+        </label>
+        <label class="field">
+          <span>Replace with</span>
+          <input type="text" class="replace" placeholder="leave empty to delete" autocomplete="off" spellcheck="false">
+        </label>
+      </div>
+      <div class="options">
+        <label class="check"><input type="checkbox" class="case"> Match case</label>
+        <label class="check"><input type="checkbox" class="word"> Whole word</label>
+        <label class="check"><input type="checkbox" class="rule-enabled"> Enabled</label>
+        <button type="button" class="delete" title="Delete this rule">Delete</button>
+      </div>
+    </div>
+  </template>
+
+  <script src="popup.js"></script>
+</body>
+</html>
